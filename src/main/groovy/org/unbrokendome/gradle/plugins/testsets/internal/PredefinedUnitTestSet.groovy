@@ -3,9 +3,7 @@ package org.unbrokendome.gradle.plugins.testsets.internal
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.tasks.SourceSet
 import org.unbrokendome.gradle.plugins.testsets.dsl.TestSet
-
-import java.util.function.BiConsumer
-import java.util.function.Consumer
+import org.unbrokendome.gradle.plugins.testsets.functional.Consumer
 
 class PredefinedUnitTestSet extends AbstractTestSet {
 
@@ -16,19 +14,19 @@ class PredefinedUnitTestSet extends AbstractTestSet {
 	String getName() {
 		NAME
 	}
-	
+
 
 	@Override
 	boolean isCreateArtifact() {
 		false
 	}
 
-	
+
 	@Override
 	String getDirName() {
 		SourceSet.TEST_SOURCE_SET_NAME
 	}
-	
+
 
 	@Override
 	Set<TestSet> getExtendsFrom() {

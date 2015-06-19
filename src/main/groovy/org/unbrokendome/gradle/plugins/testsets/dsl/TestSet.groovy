@@ -1,7 +1,7 @@
 package org.unbrokendome.gradle.plugins.testsets.dsl
 
 import org.gradle.api.Named
-import java.util.function.Consumer
+import org.unbrokendome.gradle.plugins.testsets.functional.Consumer
 
 interface TestSet extends Named {
 

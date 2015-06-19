@@ -1,10 +1,10 @@
 package org.unbrokendome.gradle.plugins.testsets.internal
 
+import java.util.concurrent.CopyOnWriteArrayList
+
 import org.unbrokendome.gradle.plugins.testsets.dsl.ConfigurableTestSet
 import org.unbrokendome.gradle.plugins.testsets.dsl.TestSet
-
-import java.util.concurrent.CopyOnWriteArrayList
-import java.util.function.Consumer
+import org.unbrokendome.gradle.plugins.testsets.functional.Consumer
 
 class DefaultTestSet extends AbstractTestSet implements ConfigurableTestSet {
 
@@ -21,13 +21,13 @@ class DefaultTestSet extends AbstractTestSet implements ConfigurableTestSet {
 		this.name = name
 	}
 
-	
+
 	@Override
 	String getDirName() {
         dirName ?: name
 	}
-	
-	
+
+
 	@Override
 	void setDirName(String dirName) {
 		this.dirName = dirName;

@@ -2,29 +2,21 @@
 
 A plugin for the Gradle build system that allows specifying test sets (like integration or acceptance tests). A test set is a logical grouping of a source set and related dependency configurations, tasks and artifacts.
 
+This fork mainly adds basic Java 6 compatibility to the plugin. 
+
 ## Usage
 
 ### Applying the plugin
 
-To use the TestSets plugin, include either of the following in your build script:
-
-#### New Plugins DSL (Gradle 2.1+)
-
-```groovy
-plugins {
-    id 'org.unbroken-dome.test-sets' version '1.1.0'
-}
-```
-
-#### Traditional (Gradle 1.x/2.0)
+To use the TestSets plugin, build the plugin and reference it in the buildscript configuration:
 
 ```groovy
 buildscript {
     repositories {
-        jcenter()
+        // your repository location
     }
     dependencies {
-        classpath 'org.unbroken-dome.gradle-plugins:gradle-testsets-plugin:1.0.2'
+        classpath 'org.unbroken-dome.gradle-plugins:gradle-testsets-plugin:1.1.0.java6'
     }
 }
 
@@ -35,7 +27,7 @@ apply plugin: 'org.unbroken-dome.test-sets'
 
 The TestSets plugin will only work in conjunction with the `java` and/or `groovy` plugin.
 
-You will need to run Gradle with a JDK 1.7 or higher to use the plugin.
+You will need to run Gradle with a JDK 1.6 or higher to use the plugin.
 
 ## Test sets DSL
 
