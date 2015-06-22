@@ -1,6 +1,7 @@
 package org.unbrokendome.gradle.plugins.testsets.internal
 
 import org.gradle.api.Project
+import org.gradle.api.tasks.SourceSetOutput
 import org.gradle.plugins.ide.eclipse.model.EclipseClasspath
 import org.gradle.plugins.ide.eclipse.model.EclipseModel
 import org.unbrokendome.gradle.plugins.testsets.dsl.TestSet
@@ -20,7 +21,7 @@ class EclipseClasspathListener {
 
 
 	void testSetAdded(TestSet testSet) {
-		
+
 		def eclipseModel = project.extensions.findByType EclipseModel
 		if (eclipseModel) {
 
@@ -34,8 +35,20 @@ class EclipseClasspathListener {
 
     private void addConfigurationToClasspath(String configurationName, EclipseClasspath eclipseClasspath) {
         def testSetCompileConfiguration = project.configurations.findByName configurationName
+
         if (testSetCompileConfiguration) {
             eclipseClasspath.plusConfigurations.add testSetCompileConfiguration
+
+            SourceSetOutput outputs = MainSourceSet.get(project).output
+
+            eclipseClasspath.file {
+                whenMerged { classpath ->
+                    classpath.entries.removeAll { entry ->
+                        entry.kind == 'lib' && (entry.path == outputs.classesDir.absolutePath.replace("\\", "/")
+                                || entry.path == outputs.resourcesDir.absolutePath.replace("\\", "/"))
+                    }
+                }
+            }
         }
     }
 }
